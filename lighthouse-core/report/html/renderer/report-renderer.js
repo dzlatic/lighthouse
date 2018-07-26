@@ -48,6 +48,7 @@ class ReportRenderer {
     const clone = /** @type {LH.ReportResult} */ (JSON.parse(JSON.stringify(report)));
     // Mutate the UIStrings if necessary (while saving originals)
     const clonedStrings = JSON.parse(JSON.stringify(Util.UIStrings));
+    Util.setLocale(clone.configSettings.locale);
     if (clone.i18n && clone.i18n.rendererFormattedStrings) {
       ReportRenderer.updateAllUIStrings(clone.i18n.rendererFormattedStrings);
     }
