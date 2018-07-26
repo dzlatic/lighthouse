@@ -393,6 +393,7 @@ class Util {
    */
   static setLocale(locale) {
     Util.locale = locale || self.navigator.language || 'en-US';
+    // Use a non-US locale for psuedo-locale for testing
     if (Util.locale === 'en-XA') Util.locale = 'de-DE';
   }
 }
