@@ -9,9 +9,11 @@ const Audit = require('./audit');
 const i18n = require('../lib/i18n');
 
 const UIStrings = {
-  title: 'Keep server response times low (TTFB)',
+  title: 'Server response times are low (TTFB)',
+  failureTitle: 'Reduce server response times (TTFB)',
   description: 'Time To First Byte identifies the time at which your server sends a response.' +
     ' [Learn more](https://developers.google.com/web/tools/lighthouse/audits/ttfb).',
+  /** [ICU Syntax] Used to summarize the total Time to First Byte duration for the primary HTML response */
   displayValue: `Root document took {timeInMs, number, milliseconds}\xa0ms`,
 };
 
@@ -27,6 +29,7 @@ class TTFBMetric extends Audit {
     return {
       id: 'time-to-first-byte',
       title: str_(UIStrings.title),
+      failureTitle: str_(UIStrings.failureTitle),
       description: str_(UIStrings.description),
       requiredArtifacts: ['devtoolsLogs', 'URL'],
     };

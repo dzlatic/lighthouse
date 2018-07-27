@@ -10,11 +10,12 @@ const i18n = require('../../lib/i18n');
 
 const UIStrings = {
   title: 'Avoids enormous network payloads',
-  failureTitle: 'Has enormous network payloads',
+  failureTitle: 'Avoid enormous network payloads',
   description:
   'Large network payloads cost users real money and are highly correlated with ' +
   'long load times. [Learn ' +
   'more](https://developers.google.com/web/tools/lighthouse/audits/network-payloads).',
+  /** [ICU Syntax] Used to summarize the total byte size of the page and all its network requests */
   displayValue: 'Total size was {totalBytes, number, bytes}\xa0KB',
 };
 
