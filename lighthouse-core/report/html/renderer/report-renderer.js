@@ -49,7 +49,9 @@ class ReportRenderer {
     // Mutate the UIStrings if necessary (while saving originals)
     const originalUIStrings = JSON.parse(JSON.stringify(Util.UIStrings));
     // If LHR is older (≤3.0.3), it has no locale setting. Set default.
-    clone.configSettings.locale = 'en-US';
+    if (!clone.configSettings.locale) {
+      clone.configSettings.locale = 'en-US';
+    }
     Util.setNumberDateLocale(clone.configSettings.locale);
     if (clone.i18n && clone.i18n.rendererFormattedStrings) {
       ReportRenderer.updateAllUIStrings(clone.i18n.rendererFormattedStrings);
