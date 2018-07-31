@@ -58,7 +58,8 @@ describe('util helpers', () => {
     assert.equal(Util.formatDuration(28 * 60 * 60 * 1000 + 5000), `1${NBSP}d 4${NBSP}h 5${NBSP}s`);
   });
 
-  it('formats based on locale', () => {
+  // TODO: need ICU support in node on Travis/Appveyor
+  it.skip('formats based on locale', () => {
     const number = 12346.858558;
 
     const originalLocale = Util.numberDateLocale;
@@ -68,7 +69,7 @@ describe('util helpers', () => {
     assert.strictEqual(Util.formatNumber(number), '12,346.9');
   });
 
-  it('uses decimal comma with en-XA test locale', () => {
+  it.skip('uses decimal comma with en-XA test locale', () => {
     const number = 12346.858558;
 
     const originalLocale = Util.numberDateLocale;
