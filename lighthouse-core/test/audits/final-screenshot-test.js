@@ -27,7 +27,7 @@ describe('Final screenshot', () => {
     const results = await FinalScreenshotAudit.audit(artifacts);
 
     assert.ok(results.rawValue);
-    assert.equal(results.details.items[0].timestamp, 225414990.064);
+    assert.equal(results.details.timestamp, 225414990.064);
   });
 
 });

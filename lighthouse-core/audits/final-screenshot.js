@@ -38,13 +38,9 @@ class FinalScreenshot extends Audit {
     return {
       rawValue: true,
       details: {
-        type: 'filmstrip',
-        items: [
-          {
-            timestamp: finalScreenshot.timestamp,
-            data: finalScreenshot.datauri,
-          },
-        ],
+        type: 'screenshot',
+        timestamp: finalScreenshot.timestamp,
+        data: finalScreenshot.datauri,
       },
     };
   }
