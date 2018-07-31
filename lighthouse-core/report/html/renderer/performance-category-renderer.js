@@ -206,7 +206,7 @@ class PerformanceCategoryRenderer extends CategoryRenderer {
   static getFinalScreenshot(category) {
     const auditRef = category.auditRefs.find(audit => audit.id === 'final-screenshot');
     if (!auditRef || !auditRef.result || auditRef.result.scoreDisplayMode === 'error') return null;
-    return `data:image/jpeg;base64,${auditRef.result.details.items[0].data}`;
+    return auditRef.result.details.items[0].data;
   }
 }
 
