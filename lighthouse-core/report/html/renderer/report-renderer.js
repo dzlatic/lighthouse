@@ -47,8 +47,10 @@ class ReportRenderer {
     // If any mutations happen to the report within the renderers, we want the original object untouched
     const clone = /** @type {LH.ReportResult} */ (JSON.parse(JSON.stringify(report)));
     // Mutate the UIStrings if necessary (while saving originals)
-    const clonedStrings = JSON.parse(JSON.stringify(Util.UIStrings));
-    Util.setLocale(clone.configSettings.locale);
+    const originalUIStrings = JSON.parse(JSON.stringify(Util.UIStrings));
+    // If LHR is older (≤3.0.3), it has no locale setting. Set default.
+    clone.configSettings.locale = 'en-US';
+    Util.setNumberDateLocale(clone.configSettings.locale);
     if (clone.i18n && clone.i18n.rendererFormattedStrings) {
       ReportRenderer.updateAllUIStrings(clone.i18n.rendererFormattedStrings);
     }
@@ -62,7 +64,7 @@ class ReportRenderer {
     container.appendChild(this._renderReport(clone));
 
     // put the UIStrings back into original state
-    ReportRenderer.updateAllUIStrings(clonedStrings);
+    ReportRenderer.updateAllUIStrings(originalUIStrings);
 
     return /** @type {Element} **/ (container);
   }
