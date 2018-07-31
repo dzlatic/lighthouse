@@ -7,6 +7,10 @@
 
 const assert = require('assert');
 const Util = require('../../../../report/html/renderer/util.js');
+
+const ReportRenderer = require('../../../../report/html/renderer/report-renderer.js');
+const sampleResults = require('../../../results/sample_v2.json');
+
 const NBSP = '\xa0';
 
 /* eslint-env jest */
@@ -141,5 +145,24 @@ describe('util helpers', () => {
     const cloned = JSON.parse(JSON.stringify(displayValue));
     Util.formatDisplayValue(displayValue);
     assert.deepStrictEqual(displayValue, cloned, 'displayValue was mutated');
+  });
+
+  describe('getFinalScreenshot', () => {
+    sampleResults.reportCategories = Object.values(sampleResults.categories);
+    const category = sampleResults.reportCategories.find(cat => cat.id === 'performance');
+    ReportRenderer.smooshAuditResultsIntoCategories(sampleResults.audits,
+      sampleResults.reportCategories);
+
+    it('gets a datauri as a string', () => {
+      const datauri = Util.getFinalScreenshot(category);
+      assert.equal(typeof datauri, 'string');
+      assert.ok(datauri.startsWith('data:image/jpeg;base64,'));
+    });
+
+    it('returns null if there are no screenshots', () => {
+      const fakeCategory = Object.assign({}, category, {auditRefs: []});
+      const datauri = Util.getFinalScreenshot(fakeCategory);
+      assert.equal(datauri, null);
+    });
   });
 });

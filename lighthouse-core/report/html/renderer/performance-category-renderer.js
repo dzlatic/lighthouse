@@ -198,16 +198,6 @@ class PerformanceCategoryRenderer extends CategoryRenderer {
     element.appendChild(passedElem);
     return element;
   }
-
-  /**
-   * @param {LH.ReportResult.Category} category
-   * @return {null|string}
-   */
-  static getFinalScreenshot(category) {
-    const auditRef = category.auditRefs.find(audit => audit.id === 'final-screenshot');
-    if (!auditRef || !auditRef.result || auditRef.result.scoreDisplayMode === 'error') return null;
-    return auditRef.result.details.items[0].data;
-  }
 }
 
 if (typeof module !== 'undefined' && module.exports) {

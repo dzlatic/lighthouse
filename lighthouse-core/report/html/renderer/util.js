@@ -329,6 +329,16 @@ class Util {
   }
 
   /**
+   * @param {LH.ReportResult.Category} category
+   * @return {null|string}
+   */
+  static getFinalScreenshot(category) {
+    const auditRef = category.auditRefs.find(audit => audit.id === 'final-screenshot');
+    if (!auditRef || !auditRef.result || auditRef.result.scoreDisplayMode === 'error') return null;
+    return auditRef.result.details.items[0].data;
+  }
+
+  /**
    * @param {LH.Config.Settings} settings
    * @return {{deviceEmulation: string, networkThrottling: string, cpuThrottling: string, summary: string}}
    */
